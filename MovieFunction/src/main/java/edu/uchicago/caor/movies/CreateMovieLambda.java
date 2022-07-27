@@ -20,15 +20,14 @@ public class CreateMovieLambda {
     public APIGatewayProxyResponseEvent handleRequest (APIGatewayProxyRequestEvent requestEvent) throws JsonProcessingException {
 
         Table moviesTable = dynamoDB.getTable(System.getenv("MOVIES_TABLE"));
-        Movie movie = new Movie("123238943", "French Love", 2022);
 
+        Movie movie = objectMapper.readValue(requestEvent.getBody(), Movie.class);
         Item item = new Item()
                 .withPrimaryKey("id", movie.getId())
                 .withString("title", movie.getTitle())
                 .withInt("year", movie.getYear());
         moviesTable.putItem(item);
 
-//        Movie movie = objectMapper.readValue(requestEvent.getBody(), Movie.class);
         return new APIGatewayProxyResponseEvent().withStatusCode(200).withBody(movie.toString());
     }
 }
