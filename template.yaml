@@ -15,6 +15,12 @@ Globals:
         MOVIES_TABLE: !Ref MoviesTable
 
 Resources:
+  MoviesTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
   CreatMovieFunction:
     Type: AWS::Serverless::Function
     Properties:
