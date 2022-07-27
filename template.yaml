@@ -49,3 +49,8 @@ Resources:
           Properties:
             Path: /movies
             Method: GET
+
+Outputs:
+  moviesApi:
+    Description: "API Gateway endpoint for moviesApi"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/movies"

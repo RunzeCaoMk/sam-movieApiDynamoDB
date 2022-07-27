@@ -33,9 +33,6 @@ public class ReadMoviesLambda {
                 //collect to a List
                 .collect(Collectors.toList());
 
-
-        // simulating reading movie
-        Movie movie = new Movie("12324898", "Love Story", 2022);
-        return new APIGatewayProxyResponseEvent().withStatusCode(200).withBody(movie.toString());
+        return new APIGatewayProxyResponseEvent().withStatusCode(200).withBody(objectMapper.writeValueAsString(movies));
     }
 }
