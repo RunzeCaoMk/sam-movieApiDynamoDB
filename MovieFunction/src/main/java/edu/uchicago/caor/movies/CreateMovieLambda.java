@@ -9,10 +9,9 @@ public class CreateMovieLambda {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public APIGatewayProxyResponseEvent handleRequest (APIGatewayProxyResponseEvent requestEvent) throws JsonProcessingException {
+    public APIGatewayProxyResponseEvent handleRequest (APIGatewayProxyRequestEvent requestEvent) throws JsonProcessingException {
 
         Movie movie = objectMapper.readValue(requestEvent.getBody(), Movie.class);
-
         return new APIGatewayProxyResponseEvent().withStatusCode(200).withBody(movie.toString());
     }
 }
