@@ -13,7 +13,7 @@ Resources:
       Handler: edu.uchicago.caor.movies.CreateMovieLambda.handleRequest
       Runtime: java11
       MemorySize: 512
-      Timeout: 200
+      Timeout: 20
       Events:
         PostMovie:
           Type: Api
