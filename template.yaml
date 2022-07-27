@@ -5,15 +5,21 @@ Description: >
 
   Sample SAM Template for movieApi
 
+Globals:
+  Function:
+    Runtime: java11
+    MemorySize: 512
+    Timeout: 20
+    Environment:
+      Variables:
+        MOVIES_TABLE: !Ref MoviesTable
+
 Resources:
   CreatMovieFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: MovieFunction
       Handler: edu.uchicago.caor.movies.CreateMovieLambda::handleRequest
-      Runtime: java11
-      MemorySize: 512
-      Timeout: 20
       Events:
         PostMovie:
           Type: Api
@@ -25,9 +31,6 @@ Resources:
     Properties:
       CodeUri: MovieFunction
       Handler: edu.uchicago.caor.movies.ReadMoviesLambda::handleRequest
-      Runtime: java11
-      MemorySize: 512
-      Timeout: 20
       Events:
         PostMovie:
           Type: Api
